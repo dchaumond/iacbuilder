@@ -33,7 +33,7 @@ RUN apk add --no-cache --update ca-certificates vim curl jq && \
     chmod +x /usr/local/bin/kubectl
 
 # Terraform
-RUN apk add make python bash ca-certificates openssl unzip wget && \
+RUN apk add make python bash ca-certificates git openssl unzip wget && \
     cd /tmp && \
     wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
     unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin/ && \
