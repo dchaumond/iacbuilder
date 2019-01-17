@@ -49,4 +49,9 @@ RUN python -m ensurepip && \
     pip install --upgrade awscli && \
     rm -r /root/.cache
 
+# Convert tfvars file to json
+RUN echo $'#!/usr/bin/env python\n\
+import sys, yaml, json; tfvars=json.load(sys.stdin); json.dump({ \"tfvars\": { k: v[\"value\"] for k, v in tfvars.items() }}, sys.stdout, indent=4)'\
+> /usr/local/bin/tfvars2json && chmod +x /usr/local/bin/tfvars2json
+
 ENTRYPOINT ["/bin/bash"]
